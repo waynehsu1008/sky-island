@@ -1,0 +1,77 @@
+:root { font-family: "Noto Sans TC", "Microsoft JhengHei", sans-serif; color: #0d263b; background: #bfe0f4; font-synthesis: none; }
+* { box-sizing: border-box; }
+body { margin: 0; overflow: hidden; }
+button { font: inherit; cursor: pointer; touch-action: manipulation; }
+button:focus-visible { outline: 3px solid #e1a83f; outline-offset: 5px; }
+button:disabled { cursor: wait; opacity: .65; }
+#game, #world { width: 100%; height: 100%; position: fixed; inset: 0; }
+#world { display: block; }
+.topbar { position: absolute; top: 18px; left: 20px; right: 20px; display: flex; align-items: flex-start; justify-content: space-between; gap: 16px; pointer-events: none; }
+.title-group { display: flex; flex-direction: column; align-items: flex-start; gap: 6px; min-width: 0; }
+.play-clock { display: flex; flex-wrap: wrap; gap: 4px 12px; padding: 4px 8px; font-size: 13px; font-variant-numeric: tabular-nums; }
+.play-clock span, #play-day { white-space: nowrap; }
+.brand { font-size: 21px; font-weight: 700; letter-spacing: .04em; text-shadow: 0 1px 4px #d9efff; }
+.utilities { display: flex; align-items: center; gap: 18px; font-size: 15px; font-weight: 700; }
+.utilities button { color: inherit; background: #e5f4fc80; border: 1.5px solid currentColor; border-radius: 4px; padding: 6px 14px; font-size: 15px; font-weight: 700; pointer-events: auto; }
+.utilities button:hover { background: #f1faff; }
+#fps { min-width: 65px; font-variant-numeric: tabular-nums; }
+.welcome { position: absolute; top: 16%; left: 50%; transform: translateX(-50%); width: 320px; max-width: calc(100% - 40px); padding: 24px 28px 20px; border-radius: 8px; background: #eef8ffdf; text-align: center; }
+.welcome h1 { font-size: 36px; line-height: 1.3; margin: 0 0 12px; font-weight: 800; letter-spacing: .02em; }
+.welcome p { font-size: 18px; line-height: 1.65; margin: 0 0 20px; }
+#start { border: 0; border-radius: 5px; background: #164d5c; color: white; font-size: 19px; line-height: 1.5; font-weight: 700; padding: 10px 24px; min-width: 192px; }
+#start:hover:not(:disabled) { background: #0c3947; }
+.welcome .note { margin: 12px 0 0; color: #425f72; font-size: 15px; }
+.crosshair { position: absolute; top: 50%; left: 50%; width: 18px; height: 18px; transform: translate(-50%, -50%); pointer-events: none; filter: drop-shadow(0 1px 1px #172f4650); }
+.crosshair::before, .crosshair::after { content: ""; position: absolute; background: white; border-radius: 1px; }
+.crosshair::before { width: 18px; height: 2px; top: 8px; }
+.crosshair::after { height: 18px; width: 2px; left: 8px; }
+.controls { position: absolute; bottom: max(18px, env(safe-area-inset-bottom)); left: 20px; margin: 0; padding: 10px 15px; border-radius: 5px; background: #eef8ffdf; display: flex; align-items: center; gap: 16px; font-size: 14px; line-height: 1.6; pointer-events: none; }
+.controls span { white-space: nowrap; }
+kbd { font-family: inherit; font-weight: 700; }
+.brand, .utilities { background: #eef8ffdf; border-radius: 5px; padding: 5px 9px; }
+.controls { max-width: calc(100% - 40px); flex-wrap: wrap; }
+.inventory { position: absolute; bottom: 76px; left: 50%; transform: translateX(-50%); width: min(496px, calc(100% - 24px)); text-align: center; pointer-events: none; }
+#selected-item { display: inline-block; padding: 3px 14px; margin-bottom: 7px; border-radius: 4px; background: #eef8ffdf; font-size: 14px; }
+#hotbar { display: flex; gap: 5px; pointer-events: auto; }
+.slot { position: relative; flex: 1; min-width: 0; height: 56px; padding: 4px; border: 2px solid #426475; border-radius: 5px; background: #eef8fff2; color: #0d263b; }
+.slot.selected { border: 3px solid #d59b23; background: #fff5d8; }
+.slot img { width: 40px; height: 40px; max-width: 100%; object-fit: contain; image-rendering: pixelated; }
+.slot kbd { position: absolute; top: 1px; left: 4px; font-size: 11px; }
+.slot .count { position: absolute; bottom: 0; right: 4px; padding: 0 2px; border-radius: 2px; background: #eef8ffcf; font-size: 14px; font-weight: 800; font-variant-numeric: tabular-nums; }
+.notice { position: absolute; left: 50%; bottom: 85px; transform: translateX(-50%); background: #eef8ffef; border-radius: 5px; padding: 10px 18px; font-size: 15px; text-align: center; }
+[hidden] { display: none !important; }
+/* 方塊遊戲介面：直角、石灰色按鍵、明暗邊框。 */
+.brand, .utilities, .controls, #selected-item, .notice, .play-clock {
+  color: #fffbed; background: #26332cbd; border-radius: 0;
+  text-shadow: 2px 2px #162219; border: 2px solid #ffffff26;
+}
+.brand { letter-spacing: .12em; }
+.utilities button { border-radius: 0; background: #646d60; border-color: #b9c1ae #323b30 #323b30 #b9c1ae; }
+.utilities button:hover { background: #7b896d; }
+.welcome { border-radius: 0; background: #28342be8; color: #fffbed; border: 4px solid #899b70; box-shadow: 7px 7px #15231966; }
+.welcome h1 { text-shadow: 3px 3px #142015; letter-spacing: .09em; }
+.welcome .note { color: #cfdbc6; }
+#start { border-radius: 0; background: #6b8550; border: 3px solid; border-color: #b7c997 #344c2c #344c2c #b7c997; text-shadow: 2px 2px #344c2c; }
+#start:hover:not(:disabled) { background: #809b60; }
+#hotbar { gap: 2px; padding: 4px; background: #252823dc; border: 3px solid; border-color: #a0a28e #404538 #404538 #a0a28e; }
+.slot { border-radius: 0; background: #7b8071ed; border: 3px solid; border-color: #4b5046 #acb09b #acb09b #4b5046; color: white; }
+.slot.selected { border: 3px solid #fffbea; background: #a1aa8d; box-shadow: inset 0 0 0 1px #414e36; }
+.slot .count { color: #fff; background: #26332680; border-radius: 0; text-shadow: 1px 1px #102014; }
+.slot kbd { text-shadow: 1px 1px #102014; }
+.notice { bottom: 165px; }
+@media (max-width: 600px) {
+  .topbar { top: 14px; left: 14px; right: 14px; flex-wrap: wrap; gap: 8px; }
+  .play-clock { font-size: 12px; gap: 4px 8px; }
+  .brand { font-size: 18px; }
+  .utilities { gap: 10px; font-size: 13px; }
+  .utilities button { font-size: 13px; padding: 5px 9px; }
+  #fps { min-width: 50px; }
+  .welcome { top: 19%; padding: 22px; width: 300px; }
+  .welcome h1 { font-size: 32px; }
+  .welcome p { font-size: 16px; }
+  .controls { left: 12px; right: 12px; bottom: 12px; flex-wrap: wrap; gap: 5px 15px; font-size: 12px; padding: 10px 12px; }
+  .inventory { bottom: 112px; }
+  .slot { height: 44px; padding: 3px; }
+  .slot img { width: 30px; height: 30px; }
+  .notice { bottom: 190px; width: max-content; max-width: calc(100% - 24px); }
+}
