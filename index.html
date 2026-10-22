@@ -1,0 +1,45 @@
+<!doctype html>
+<html lang="zh-Hant">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="description" content="在空中之島走走、跳躍，探索自己的方塊小島。" />
+    <title>空中之島</title>
+    <link rel="icon" href="data:," />
+  </head>
+  <body>
+    <main id="game" aria-label="空中之島遊戲">
+      <canvas id="world" aria-label="小島 3D 畫面"></canvas>
+      <header class="topbar">
+        <div class="title-group">
+          <span class="brand">空中之島</span>
+          <div class="play-clock" title="每 5 分鐘為一天，暫停時停止計時">
+            <output id="play-day" aria-label="遊玩天數">第 1 天</output>
+            <span>遊玩 <output id="play-time" aria-label="累積遊玩時間">00:00</output></span>
+          </div>
+        </div>
+        <div class="utilities">
+          <output id="time-of-day" aria-label="目前時段">白天</output>
+          <button id="fullscreen" type="button">全螢幕</button>
+          <output id="fps" aria-label="目前每秒畫面數">FPS —</output>
+        </div>
+      </header>
+      <div class="crosshair" aria-hidden="true"></div>
+      <section id="welcome" class="welcome" aria-labelledby="welcome-title">
+        <h1 id="welcome-title">空中之島</h1>
+        <p>挖方塊、蓋小島，<br />和方塊小動物一起探索。</p>
+        <button id="start" type="button" disabled>載入小島中…</button>
+        <p id="start-note" class="note" role="status">點擊後以滑鼠看四周。</p>
+      </section>
+      <p id="notice" class="notice" role="status" hidden></p>
+      <section class="inventory" aria-label="方塊欄">
+        <output id="selected-item" aria-label="所選方塊">草地</output>
+        <div id="hotbar"></div>
+      </section>
+      <footer class="controls">
+        <span><kbd>WASD</kbd> 移動</span><span><kbd>空白鍵</kbd> 跳躍</span><span><kbd>滑鼠</kbd> 看四周</span><span><kbd>左鍵長按</kbd> 挖</span><span><kbd>右鍵</kbd> 放</span><span><kbd>1–8</kbd> 選方塊</span><span><kbd>Esc</kbd> 暫停</span>
+      </footer>
+    </main>
+    <script type="module" src="/src/main.js"></script>
+  </body>
+</html>
